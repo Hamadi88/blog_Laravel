@@ -13,9 +13,14 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
+      
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('titre');
             $table->timestamps();
+            $table->text('contenu');
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('restrict');     
         });
     }
 
